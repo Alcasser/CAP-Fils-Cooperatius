@@ -1,2 +1,2 @@
-# CAP-Fils-Coperatius
+# CAP-Fils-Cooperatius
 Pràctica de continuacions en JavaScript
