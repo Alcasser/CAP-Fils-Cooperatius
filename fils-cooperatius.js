@@ -8,7 +8,7 @@ function make_thread_system() {
     }
 
     return {
-        spawn: function(thunk, name) {
+        spawn: function(thunk) {
             var c = current_continuation()
             if (c instanceof Continuation) {
                 threads.push(c)
@@ -23,7 +23,7 @@ function make_thread_system() {
                 halt()
             }
         },
-        relinquish: function(name) {
+        relinquish: function() {
             var c = new Continuation()
             if (c instanceof Continuation) {
                 threads.push(c)
