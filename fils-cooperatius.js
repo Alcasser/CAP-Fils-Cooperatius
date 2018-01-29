@@ -19,7 +19,7 @@ function make_thread_system() {
     }
 
     return {
-        spawn: (thunk, name) => {
+        spawn: function(thunk, name) {
             var c = current_continuation()
             if (c instanceof Continuation) {
                 push(c, name)
@@ -30,7 +30,7 @@ function make_thread_system() {
                 thunk()
             }
         },
-        quit: (name) => {
+        quit: function(name) {
             // "== 2" en la imp de scheme
             if (threads.length > 0) {
                 print('quit: remaining threads')
@@ -40,7 +40,7 @@ function make_thread_system() {
                 halt()
             }
         },
-        relinquish: (name) => {
+        relinquish: function(name) {
             //Por alguna razón, los threads a, b, c que se guardan al principio, no se recuperan al hacer shift(). Se queda en el thread "name: c".
             print('relinquish from: ' + name)
             print('tlen: ' + threads.length)
@@ -53,7 +53,7 @@ function make_thread_system() {
                 nt.cont()
             }
         },
-        start_threads: () => {
+        start_threads: function() {
             print('start')
             var c = current_continuation()
             if (c instanceof Continuation) {
