@@ -1,0 +1,58 @@
+Test testContinuation success
+Test testCallcc success
+Test make_thread_thunk (global counter)
+in thread a ; counter = 10
+in thread b ; counter = 9
+in thread c ; counter = 8
+in thread a ; counter = 7
+in thread b ; counter = 6
+in thread c ; counter = 5
+in thread a ; counter = 4
+in thread b ; counter = 3
+in thread c ; counter = 2
+in thread a ; counter = 1
+in thread b ; counter = 0
+Test make_thread_thunk_2 (per-thread counter)
+in thread a ; i = 0
+in thread b ; i = 0
+in thread c ; i = 0
+in thread a ; i = 1
+in thread b ; i = 1
+in thread c ; i = 1
+in thread a ; i = 2
+in thread b ; i = 2
+in thread c ; i = 2
+in thread a ; i = 3
+in thread b ; i = 3
+in thread c ; i = 3
+in thread a ; i = 4
+in thread b ; i = 4
+in thread c ; i = 4
+Test make_thread_thunk_3 (maximum of a list)
+list 1,3,2,6,9,3,0
+in thread a ; list[ 0 ] =  1
+in thread b ; list[ 1 ] =  3
+update max =  3
+in thread c ; list[ 2 ] =  2
+in thread a ; list[ 3 ] =  6
+update max =  6
+in thread b ; list[ 4 ] =  9
+update max =  9
+in thread c ; list[ 5 ] =  3
+in thread a ; list[ 6 ] =  0
+max =  9
+Test make_thread_thunk_4 (maximum of a list defining thread granularity)
+list 1,3,2,6,9,3,0
+n_threads 3
+thread count 2
+in thread a ; list[ 0 ] =  1
+in thread a ; list[ 1 ] =  3
+update max =  3
+in thread b ; list[ 2 ] =  2
+in thread b ; list[ 3 ] =  6
+update max =  6
+in thread c ; list[ 4 ] =  9
+update max =  9
+in thread c ; list[ 5 ] =  3
+in thread a ; list[ 6 ] =  0
+max =  9

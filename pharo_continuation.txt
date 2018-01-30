@@ -1,0 +1,40 @@
+Continuation class >> continuation
+
+continuation
+    "JS-like new Continuation()"
+    ^self fromContext: thisContext sender sender
+
+Continuation class >> current_continuation
+
+current_continuation
+    "current implementation using JS-like continuation"
+    ^self continuation
+
+| cc |
+cc := Continuation current_continuation.
+Transcript show: cc class; cr.
+(cc isMemberOf: Continuation)
+    ifTrue: [ cc value: 2 ]
+    ifFalse: [ Transcript show: cc; cr ].
+
+Transcript:
+
+Continuation
+SmallInteger
+2
+
+| cc |
+cc := Continuation current.
+Transcript show: cc; cr.
+(cc == 2) ifFalse: [ cc value: 2 ].
+
+cc := Continuation current_continuation.
+Transcript show: cc; cr.
+(cc == 2) ifFalse: [ cc value: 2 ].
+
+Transcript:
+
+a Continuation
+2
+a Continuation
+2
